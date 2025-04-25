@@ -1,0 +1,504 @@
+/* MODO EXTREMO DE ELIMINAÇÃO DE BLUR - VERSÃO 2.0 */
+
+/* Resetar TODOS os elementos */
+* {
+    filter: none !important;
+    -webkit-filter: none !important;
+    -moz-filter: none !important;
+    -o-filter: none !important;
+    -ms-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    background-blend-mode: normal !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    perspective: none !important;
+    -webkit-perspective: none !important;
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    will-change: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Remover TODOS os pseudo-elementos para eliminar overlays */
+*:before,
+*:after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    z-index: -9999 !important;
+}
+
+/* Remover quaisquer elementos de overlay */
+.overlay,
+[class*="overlay"],
+.hero-slide:before,
+.hero-slide:after,
+.bg-image:before,
+.bg-image:after,
+.slider-item:before,
+.slider-item:after,
+.banner:before,
+.banner:after,
+.hero-banner:before,
+.hero-banner:after,
+.hero-section:before,
+.hero-section:after,
+.hero-wrapper:before,
+.hero-wrapper:after,
+.slick-slide:before,
+.slick-slide:after,
+.owl-item:before,
+.owl-item:after,
+.carousel-item:before,
+.carousel-item:after {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Forçar visibilidade para imagens */
+img, 
+picture, 
+svg, 
+video {
+    filter: contrast(1.1) !important;
+    -webkit-filter: contrast(1.1) !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    image-rendering: pixelated !important;
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 99 !important;
+    position: relative !important;
+}
+
+/* Melhorar qualidade geral de todas as imagens */
+.banner img,
+.hero-banner img,
+.hero-slide img,
+.banner-image img,
+.featured-image img,
+.product-image img,
+.carousel img,
+.slide img,
+.slider img,
+.slick-slide img,
+.owl-item img,
+.thumbnail img,
+.gallery img,
+.hero-section img,
+.hero-image img,
+.bg-image img {
+    filter: contrast(1.1) !important;
+    -webkit-filter: contrast(1.1) !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    image-rendering: pixelated !important;
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 999 !important; /* Maior índice para garantir visibilidade */
+    position: relative !important;
+    box-shadow: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+}
+
+/* Corrigir carrosséis e sliders */
+.carousel,
+.slider,
+.slideshow,
+.banner-slider,
+.hero-slider,
+.product-slider,
+.owl-carousel,
+.slick-slider,
+.swiper-container,
+.slider-wrapper,
+.splide,
+.glide,
+.flickity-slider,
+.gallery-slider {
+    overflow: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garantir que os slides individuais estejam visíveis */
+.carousel-item,
+.slider-item,
+.slide,
+.slick-slide,
+.owl-item,
+.swiper-slide,
+.splide__slide,
+.glide__slide,
+.flickity-slider > *,
+.carousel .item,
+.slider .item,
+.slideshow .item,
+.hero-slide,
+.banner-slide {
+    transform: none !important;
+    -webkit-transform: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    background-blend-mode: normal !important;
+    mix-blend-mode: normal !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Corrigir slides ativos especificamente */
+.carousel-item.active,
+.slider-item.active,
+.slide.active,
+.slick-slide.slick-active,
+.owl-item.active,
+.swiper-slide-active,
+.splide__slide.is-active,
+.glide__slide--active,
+.flickity-slider .is-selected,
+.carousel .active,
+.slider .active,
+.slideshow .active,
+.hero-slide.active,
+.banner-slide.active {
+    z-index: 999 !important; /* Garantir que os slides ativos fiquem no topo */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    filter: contrast(1.1) !important;
+    -webkit-filter: contrast(1.1) !important;
+}
+
+/* Corrigir partes internas dos carrosséis */
+.carousel-inner,
+.slider-inner,
+.slideshow-inner,
+.slick-track,
+.slick-list,
+.owl-stage,
+.owl-stage-outer,
+.swiper-wrapper,
+.splide__track,
+.glide__track,
+.flickity-viewport,
+.flickity-slider {
+    transform: none !important;
+    -webkit-transform: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+}
+
+/* Remover qualquer backdrop ou overlay em banners e seções de destaque */
+.banner,
+.hero-banner,
+.hero-section,
+.featured-section,
+.hero-wrapper,
+.jumbotron,
+.header-banner,
+.main-banner,
+.page-header,
+.section-header,
+.showcase,
+.bg-image,
+.parallax,
+.bg-cover,
+.bg-fixed,
+.bg-parallax,
+.bg-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-blend-mode: normal !important;
+    mix-blend-mode: normal !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Desativar efeitos de bibliotecas de animação conhecidas */
+[class*="animate__"],
+[class*="wow"],
+[class*="aos-"],
+[class*="motion-"],
+[class*="gsap-"],
+[class*="animated"],
+[class*="tween"],
+[class*="fade"],
+[class*="slide-"],
+[class*="zoom-"],
+[class*="blur-"],
+[data-aos],
+[data-animation],
+[data-animate],
+[data-wow-delay] {
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Forçar backgrounds de imagem a serem exibidos corretamente */
+[style*="background-image"],
+.bg-image,
+.bg-cover,
+.bg-fixed,
+.bg-parallax,
+.hero-section,
+.hero-banner,
+.hero-image {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-blend-mode: normal !important;
+    background-color: transparent !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Remover qualquer efeito de escurecimento que possa estar aplicado */
+body,
+html,
+main,
+section,
+header,
+footer,
+aside,
+article,
+.container,
+.wrapper,
+.content,
+.page,
+.site {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: initial !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* REGRAS EXTREMAMENTE ESPECÍFICAS PARA SLIDERS */
+.hero-slide,
+.hero-banner,
+.main-banner,
+.banner-slide,
+.featured-slide,
+.showcase-slide,
+.banner,
+[class*="-slide"],
+[class*="-banner"],
+[id*="-slide"],
+[id*="-banner"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 999 !important;
+    background-blend-mode: normal !important;
+    mix-blend-mode: normal !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+}
+
+/* Forçar links e botões a ficarem visíveis dentro de slides */
+.hero-slide a,
+.hero-banner a,
+.main-banner a,
+.banner-slide a,
+.featured-slide a,
+.hero-slide button,
+.hero-banner button,
+.main-banner button,
+.banner-slide button,
+.featured-slide button {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 9999 !important;
+    position: relative !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+/* Evitar qualquer clipping ou masking de conteúdo */
+.clip-path,
+.clip,
+.mask,
+[style*="clip-path"],
+[style*="clip"],
+[style*="mask"] {
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    clip: auto !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+}
+
+/* Garantir que textos nos slides fiquem visíveis */
+.hero-slide h1,
+.hero-slide h2,
+.hero-slide h3,
+.hero-slide h4,
+.hero-slide h5,
+.hero-slide h6,
+.hero-slide p,
+.hero-slide span,
+.hero-banner h1,
+.hero-banner h2,
+.hero-banner h3,
+.hero-banner h4,
+.hero-banner h5,
+.hero-banner h6,
+.hero-banner p,
+.hero-banner span,
+.banner h1,
+.banner h2,
+.banner h3,
+.banner h4,
+.banner h5,
+.banner h6,
+.banner p,
+.banner span,
+.slider-item h1,
+.slider-item h2,
+.slider-item h3,
+.slider-item h4,
+.slider-item h5,
+.slider-item h6,
+.slider-item p,
+.slider-item span {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    text-shadow: none !important;
+    color: initial !important;
+    z-index: 999 !important;
+    position: relative !important;
+}
+
+/* Garantir que elementos específicos com nomes de classe comuns não tenham blur ou opacidade */
+.luxury-selection,
+.premium-selection,
+.featured-selection,
+.special-selection,
+.highlight-selection,
+.product-highlight,
+.featured-product,
+.main-product,
+.product-showcase,
+.product-feature,
+.product-banner,
+[class*="luxury"],
+[class*="premium"],
+[class*="featured"],
+[class*="special"],
+[class*="highlight"],
+[id*="luxury"],
+[id*="premium"],
+[id*="featured"],
+[id*="special"],
+[id*="highlight"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-blend-mode: normal !important;
+    mix-blend-mode: normal !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+
+/* CSS para garantir que vídeos de fundo não tenham blur */
+video,
+video.background-video,
+.video-background,
+.video-banner,
+.video-hero,
+.video-section,
+.background-video,
+.bg-video,
+[class*="video-bg"],
+[class*="bg-video"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    object-fit: cover !important;
+    z-index: 1 !important;
+} 
