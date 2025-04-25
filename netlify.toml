@@ -1,0 +1,13 @@
+[build]
+  publish = "public/"
+  command = ""
+
+[build.environment]
+  # Optional: Specify Node.js version if needed by build tools
+  # NODE_VERSION = "18"
+
+# Optional: Redirects and rewrites rules
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200 
